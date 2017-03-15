@@ -2,65 +2,31 @@
   <div>
     <h2>Disc List</h2>
       <div class="post">
-        <div class="loading" v-if="loading">
-          Loading...
-        </div>
-
-        <div v-if="error" class="error">
-
-        </div>
-
-        <div v-if="post" class="content">
-           <ul  v-for="item in post">
-              <li>
-                {{ item.title }}
-              </li>
-              <li>
-                {{ item.artist }}
-              </li>
-              <li>
-                {{ item.year }}
+        <div v-if="albums" class="content">
+           <ul>
+              <li v-for="item in albums">
+                {{ item.title }} - {{ item.artist }} ({{ item.year }})
               </li>
           </ul>
         </div>
       </div>
-
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'discs',
-  data () {
-    return {
-      loading: false,
-      post: null,
-      error: null
-    }
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      albums: 'getAlbums'
+    })
   },
   created () {
-    // fetch the data when the view is created and the data is
-    // already being observed
-    this.fetchData()
-  },
-  watch: {
-    // call again the method if the route changes
-    '$route': 'fetchData'
-  },
-  methods: {
-    fetchData () {
-      this.error = this.post = null
-      this.loading = true
-      // replace getPost with your data fetching util / API wrapper
-      this.$http.get('http://localhost:4000/', {headers: {'Access-Control-Allow-Origin': '*'}})
-      .then((response) => {
-        // success callback
-        this.loading = false
-        this.post = response.body
-      }, (response) => {
-        // error callback
-      })
-    }
+    console.log('created')
+    this.$store.dispatch('fetchAlbums')
   }
 }
 </script>
@@ -77,7 +43,6 @@ ul {
 }
 
 li {
-  display: inline-block;
   margin: 0 10px;
 }
 

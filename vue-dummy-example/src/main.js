@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Discs from './components/DiscList'
+
+import App from './App'
 
 /* eslint-disable no-new */
 Vue.use(VueRouter)
@@ -10,7 +11,7 @@ Vue.http.headers.common['Access-Control-Allow-Origin'] = '*'
 
 var router = new VueRouter({
   routes: [
-    { path: '/', name: 'home', component: Discs }
+    { path: '/', name: 'home', component: App }
   ]
 })
 
