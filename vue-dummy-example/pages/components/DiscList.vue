@@ -1,15 +1,16 @@
 <template>
   <div>
     <h2>Disc List</h2>
-      <div class="post">
-        <div v-if="albums" class="content">
-           <ul>
-              <li v-for="item in albums">
-                {{ item.title }} - {{ item.artist }} ({{ item.year }})
-              </li>
-          </ul>
-        </div>
-      </div>
+    <div v-if="albums.length > 0" class="content">
+        <ul>
+          <li v-for="item in albums">
+            {{ item.title }} - {{ item.artist }} ({{ item.year }})
+          </li>
+      </ul>
+    </div>
+    <div v-if="albums.length == 0" class="content">
+        <span>Browse the site to check our inventory!</span>
+    </div>
   </div>
 </template>
 

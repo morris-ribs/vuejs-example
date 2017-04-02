@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <DiscList></DiscList>
     <router-view></router-view>
   </div>
@@ -15,17 +14,7 @@ export default {
   components: {
     DiscList
   },
-  created () {
-    // fetch the data when the view is created and the data is
-    // already being observed
-   // this.fetchData()
-  },
-  store: store // make this and all child components aware of the new store
-  /* methods: {
-    ...mapActions({
-      fetch: 'fetchAlbums' // map this.fetch() to this.$store.dispatch('fetchAlbums')
-    })
-  } */
+  store: store
 }
 </script>
 

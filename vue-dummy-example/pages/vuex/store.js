@@ -9,14 +9,14 @@ Vue.use(Vuex)
 // the app starts up
 const state = {
   // When the app starts, albums is set to empty list
-  albums: [{ title: 'test' }]
+  albums: []
 }
 
 const mutations = {
   // A mutation receives the current state as the first argument
   // You can make any modifications you want inside this function
   fetchAlbums (state, list) {
-    state = Object.assign({}, state, {albums: list.list})
+    state.albums = list.list
   }
 }
 
